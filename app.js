@@ -83,29 +83,50 @@ function changephoto(event){
    if (roUnd<=maXround){
     roUnd++;
 
-    renderImg();
    
-    let clCkimg=event.target.id;
-    // console.log(clCkimg);
+   let clCkimg=event.target.id;
+    console.log(clCkimg);
     switch(clCkimg){
 
       case 'img1':
-          proDuct[fIrst].voTes++
-          console.log( proDuct[fIrst].voTes);
+          proDuct[fIrst].voTes=proDuct[fIrst].voTes+1
+          console.log(proDuct);
+
           break;
       case 'img2':
           proDuct[seCnd].voTes++
-console.log(proDuct[seCnd].voTes);
+// console.log(proDuct[seCnd].voTes);
+console.log(proDuct);
+
           break;
       case 'img3':
           proDuct[thIrd].voTes++
-console.log(proDuct[thIrd].voTes );
+// console.log(proDuct[thIrd].voTes );
+console.log(proDuct);
           break;
         default:
 
 
 
     }
+
+//    if(clCkimg=='img1'){
+
+//     proDuct[fIrst].voTes++;
+
+// }else if (clCkimg=='img2'){
+//   proDuct[seCnd].voTes++;
+
+
+// }else{
+//   proDuct[seCnd].voTes++;
+
+// }
+
+renderImg();
+
+
+
    
 }else{
     img1.removeEventListener('click', changephoto);
