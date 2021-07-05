@@ -5,8 +5,11 @@ let imG3=document.getElementById('img3');
 let reSult=document.getElementById("REsult");
 let btN1=document.getElementById('butt');
 let proDuct=[];
+let prodNAme=[];
+let voTtes=[];
+let viEwws=[];
 let roUnd=1;
-let maXround=10;
+let maXround=25;
 function Products(product1){
 
   this.name=product1.split('.')[0];
@@ -38,7 +41,10 @@ function ranDom(){
 let fIrst;
 let seCnd;
 let thIrd;
-
+let fIrstb;
+let seCndb;
+let thIrdb;
+let x;
 
 function renderImg(){
 
@@ -46,18 +52,38 @@ fIrst =ranDom();
 seCnd=ranDom();
 thIrd=ranDom();
 
-while(fIrst==seCnd){
+if(roUnd==1){
+while(fIrst==seCnd||fIrst==thIrd||seCnd==thIrd){
+  fIrst=ranDom();
   seCnd=ranDom();
-
-}
-while (fIrst==thIrd||seCnd==thIrd){
   thIrd=ranDom();
+}
+}else{
 
+  while(fIrst==seCnd||fIrst==thIrd||seCnd==thIrd||fIrst==fIrstb||fIrst==seCndb||fIrst== thIrdb||seCnd==fIrstb||seCnd== seCndb||seCnd== thIrdb||thIrd==fIrstb||thIrd== seCndb||thIrd== thIrdb){
+    console.log('hi');
+
+    fIrst=ranDom();
+    seCnd=ranDom();
+    thIrd=ranDom();
+  }
 
 }
+
+
+// while (fIrst==thIrd||seCnd==thIrd){
+//   thIrd=ranDom();
+
+
+// }
+fIrstb=fIrst;
+seCndb=seCnd;
+thIrdb =thIrd;
+
 imG1.setAttribute('src', proDuct[fIrst].iMg);
 imG2.setAttribute('src', proDuct[seCnd].iMg);
 imG3.setAttribute('src', proDuct[thIrd].iMg);
+
 
 proDuct[fIrst].viEw++;
 proDuct[seCnd].viEw++;
@@ -82,27 +108,28 @@ imG3.addEventListener('click',changephoto);
 function changephoto(event){
    if (roUnd<=maXround){
     roUnd++;
+    // console.log(roUnd);
 
    
    let clCkimg=event.target.id;
-    console.log(clCkimg);
+    // console.log(clCkimg);
     switch(clCkimg){
 
       case 'img1':
           proDuct[fIrst].voTes=proDuct[fIrst].voTes+1
-          console.log(proDuct);
+          // console.log(proDuct);
 
           break;
       case 'img2':
           proDuct[seCnd].voTes++
 // console.log(proDuct[seCnd].voTes);
-console.log(proDuct);
+// console.log(proDuct);
 
           break;
       case 'img3':
           proDuct[thIrd].voTes++
 // console.log(proDuct[thIrd].voTes );
-console.log(proDuct);
+// console.log(proDuct);
           break;
         default:
 
@@ -133,7 +160,7 @@ renderImg();
 
     img2.removeEventListener('click', changephoto);
     img3.removeEventListener('click', changephoto);
-   console.log(proDuct);
+  //  console.log(proDuct);
 
   }
 
@@ -145,17 +172,68 @@ if (roUnd==maXround+1){
     for(let i=0;i<proDuct.length;i++){
      let liEl=document.createElement('li');
      liEl.textContent=`${proDuct[i].name} had ${proDuct[i].voTes} and was seen ${proDuct[i].viEw} times`
+    voTtes.push(proDuct[i].voTes);
+    viEwws.push(proDuct[i].viEw);
 
      reSult.appendChild(liEl);
 
 
+     
 
     }
 
-
+    Chartrender();
 
 }
+}
+for(let i =0;i<proDuct.length;i++){
+prodNAme.push(proDuct[i].name);
 
+
+
+
+
+console.log(prodNAme);
+}
+
+function Chartrender(){
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: prodNAme,
+          datasets: [{
+              label: '# of Votes',
+              data: voTtes,
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)'
+                  
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)'
+                 
+              ],
+              borderWidth: 1
+          },{
+            label: '# of Votes',
+            data: viEwws,
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)'
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 1
+        }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
 
 
 
