@@ -18,8 +18,6 @@ function Products(product1){
   this.voTes=0;
   proDuct.push(this);
 
-
-
 }
 
 
@@ -30,18 +28,25 @@ for(let i=0;i<list.length;i++){
   new Products(list[i]);
 
 }
-// console.log(proDuct);
 
-
+let randomNm;
 function ranDom(){
+   if (roUnd==1){
+     return  Math.floor(Math.random() * proDuct.length);
+   }else{
+       randomNm= Math.floor(Math.random() * proDuct.length);
 
-  return Math.floor(Math.random() * proDuct.length);
+  while(randomNm==fIrstd||randomNm==seCndb||randomNm==thIrdb){
+    randomNm= Math.floor(Math.random() * proDuct.length);
 
+  }
+   }
+   return randomNm;
 }
 let fIrst;
 let seCnd;
 let thIrd;
-let fIrstb;
+let fIrstd;
 let seCndb;
 let thIrdb;
 let x;
@@ -60,7 +65,7 @@ while(fIrst==seCnd||fIrst==thIrd||seCnd==thIrd){
 }
 }else{
 
-  while(fIrst==seCnd||fIrst==thIrd||seCnd==thIrd||fIrst==fIrstb||fIrst==seCndb||fIrst== thIrdb||seCnd==fIrstb||seCnd== seCndb||seCnd== thIrdb||thIrd==fIrstb||thIrd== seCndb||thIrd== thIrdb){
+  while(fIrst==seCnd||fIrst==thIrd||seCnd==thIrd){
     console.log('hi');
 
     fIrst=ranDom();
@@ -71,12 +76,7 @@ while(fIrst==seCnd||fIrst==thIrd||seCnd==thIrd){
 }
 
 
-// while (fIrst==thIrd||seCnd==thIrd){
-//   thIrd=ranDom();
-
-
-// }
-fIrstb=fIrst;
+fIrstd=fIrst;
 seCndb=seCnd;
 thIrdb =thIrd;
 
@@ -91,13 +91,6 @@ proDuct[thIrd].viEw++;
 
 
 
-  
-
-
-
-
-
-
 }
 renderImg();
 imG1.addEventListener('click',changephoto);
@@ -108,59 +101,32 @@ imG3.addEventListener('click',changephoto);
 function changephoto(event){
    if (roUnd<=maXround){
     roUnd++;
-    // console.log(roUnd);
 
    
    let clCkimg=event.target.id;
-    // console.log(clCkimg);
     switch(clCkimg){
 
       case 'img1':
           proDuct[fIrst].voTes=proDuct[fIrst].voTes+1
-          // console.log(proDuct);
 
           break;
       case 'img2':
           proDuct[seCnd].voTes++
-// console.log(proDuct[seCnd].voTes);
-// console.log(proDuct);
 
           break;
       case 'img3':
           proDuct[thIrd].voTes++
-// console.log(proDuct[thIrd].voTes );
-// console.log(proDuct);
           break;
         default:
-
-
-
-    }
-
-//    if(clCkimg=='img1'){
-
-//     proDuct[fIrst].voTes++;
-
-// }else if (clCkimg=='img2'){
-//   proDuct[seCnd].voTes++;
-
-
-// }else{
-//   proDuct[seCnd].voTes++;
-
-// }
+}
 
 renderImg();
 
-
-
-   
-}else{
+  }else{
     img1.removeEventListener('click', changephoto);
 
     img2.removeEventListener('click', changephoto);
     img3.removeEventListener('click', changephoto);
-  //  console.log(proDuct);
 
   }
 
@@ -178,22 +144,15 @@ if (roUnd==maXround+1){
      reSult.appendChild(liEl);
 
 
-     
-
-    }
+  }
 
     Chartrender();
 
-}
+  }
 }
 for(let i =0;i<proDuct.length;i++){
 prodNAme.push(proDuct[i].name);
 
-
-
-
-
-console.log(prodNAme);
 }
 
 function Chartrender(){
