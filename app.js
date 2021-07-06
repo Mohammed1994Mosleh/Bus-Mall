@@ -20,14 +20,20 @@ function Products(product1){
 
 }
 
-
+console.log(proDuct.length);
 let list=['bag.jpg','banana.jpg','bathroom.jpg','boots.jpg','breakfast.jpg','bubblegum.jpg','chair.jpg','cthulhu.jpg','dog-duck.jpg','dragon.jpg','pen.jpg','petsweep.jpg','scissors.jpg','shark.jpg','sweep.png','tauntaun.jpg','unicorn.jpg','waterglass.jpg','wineglass.jpg' ];
 
+trVstrin();
+
+
+if(proDuct.length==0){
 for(let i=0;i<list.length;i++){
 
-  new Products(list[i]);
+   new Products(list[i]);
 
+ }
 }
+// trVstrin();
 
 let randomNm;
 function ranDom(){
@@ -118,7 +124,7 @@ function changephoto(event){
           proDuct[thIrd].voTes++
           break;
         default:
-}
+   }
 
 renderImg();
 
@@ -145,7 +151,7 @@ if (roUnd==maXround+1){
 
 
   }
-
+  voTstlcl();
     Chartrender();
 
   }
@@ -154,6 +160,39 @@ for(let i =0;i<proDuct.length;i++){
 prodNAme.push(proDuct[i].name);
 
 }
+
+function voTstlcl(){
+
+let votString=JSON.stringify(proDuct);
+localStorage.setItem('vott',votString);
+
+
+
+
+
+}
+
+function trVstrin(){
+  console.log(proDuct);
+
+
+  let votObject=localStorage.getItem('vott');
+
+    let Ccc =JSON.parse(votObject);
+   
+   
+  console.log(proDuct);
+  
+  
+  
+  
+  if (Ccc != null){
+    proDuct=Ccc;
+   }
+
+}
+
+
 
 function Chartrender(){
   var ctx = document.getElementById('myChart').getContext('2d');
